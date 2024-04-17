@@ -1,17 +1,15 @@
-import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import styled from 'styled-components'
 
-const Button = styled.button`
-  background-color: red;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-`
+// If this import is moved to below LavaPool, both buttons inside 
+// the nested Pools will become green instead of now black
+import { WaterPool } from './components/WaterPool'
+
+import { LavaPool } from './components/LavaPool'
+
+import { Button } from './components/Button'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
@@ -25,9 +23,18 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <Button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </Button>
+        <WaterPool>
+          <Button>Clicky</Button>
+          <LavaPool>
+            <Button>Clicky</Button>
+          </LavaPool>
+        </WaterPool>
+        <LavaPool>
+          <Button>Clicky</Button>
+          <WaterPool>
+            <Button>Clicky</Button>
+          </WaterPool>
+        </LavaPool>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
